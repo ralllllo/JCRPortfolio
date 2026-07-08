@@ -172,7 +172,7 @@ const PortfolioPage = () => {
                  {['Spring(STS3)', 'Oracle', 'JavaScript'].map(t => (
                    <span key={t} className="bg-[#1e293b] text-[#f8fafc] px-2 py-1 text-xs font-bold brutal-border">{t}</span>
                  ))}
-                 <span className="bg-[#f8fafc] text-[#1e293b] px-2 py-1 text-xs font-bold brutal-border">+10</span>
+                 <span className="bg-[#f8fafc] text-[#1e293b] px-2 py-1 text-xs font-bold brutal-border">+5</span>
                </div>
                <div className="w-full bg-[#f8fafc] text-[#020617] font-bold py-3 brutal-border flex justify-center items-center gap-2 group-hover:bg-[#38bdf8] group-hover:text-[#020617] transition-colors cursor-pointer mt-auto">
                  VIEW PROJECT <ArrowUpRight size={18} />
