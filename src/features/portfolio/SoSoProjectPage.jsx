@@ -55,6 +55,7 @@ const SoSoProjectPage = () => {
             <div className="bg-[#334155] brutal-border brutal-shadow p-6 md:p-10 mt-8 text-base md:text-lg">
               <p className="font-bold leading-relaxed text-[#f8fafc]">
                 소상공인들이 상품의 입출고, 발주, 거래처, 결제 및 지출 내역을 하나의 서비스에서 간편하게 통합 관리할 수 있도록 설계된 풀스택 이커머스 ERP 솔루션입니다. 챗봇 기능을 통해 매장 운영 데이터를 확인할 수 있습니다.
+                (바이브 코딩)
               </p>
             </div>
           </div>
@@ -82,7 +83,7 @@ const SoSoProjectPage = () => {
                 <h3 className="text-2xl font-black text-[#f8fafc]">Backend</h3>
               </div>
               <div className="flex flex-wrap gap-3">
-                {['Spring Boot', 'Java', 'Mybatis', 'MySQL' ].map(t => (
+                {['Spring Boot', 'Java', 'Mybatis', 'MySQL' ,'Servlet', 'JSP'].map(t => (
                   <span key={t} className="bg-[#f8fafc] text-[#020617] brutal-border px-3 py-1 font-bold text-sm">{t}</span>
                 ))}
               </div>

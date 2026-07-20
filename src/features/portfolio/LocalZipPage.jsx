@@ -54,7 +54,8 @@ const LocalZipPage = () => {
             
             <div className="bg-[#334155] brutal-border brutal-shadow p-6 md:p-10 mt-8 text-base md:text-lg">
               <p className="font-bold leading-relaxed text-[#f8fafc]">
-                커뮤니티, 건의사항, 모임, 공공데이터 안심지도를 통한 본인이 살고있는 동네의 정보 습득 및 공유를 할 수 있습니다.
+                커뮤니티, 건의사항, 모임, 공공데이터 안심지도를 통한 본인이 살고있는 동네의 정보 습득 및 공유를 할 수 있습니다.<br/>
+                (전통적 개발 방식)
               </p>
             </div>
           </div>

@@ -99,7 +99,7 @@ const PortfolioPage = () => {
                 <h3 className="text-2xl font-black text-[#f8fafc]">Backend</h3>
               </div>
               <div className="flex flex-wrap gap-2">
-                 {['Spring Boot', 'Java', 'Oracle', 'MySQL', 'Redis'].map(t => (
+                 {['Spring Boot', 'Java', 'Oracle', 'MySQL', 'Redis', 'Servlet', 'JSP'].map(t => (
                    <span key={t} className="bg-[#f8fafc] text-[#020617] px-3 py-1 font-bold brutal-border text-sm">{t}</span>
                  ))}
               </div>
@@ -169,10 +169,10 @@ const PortfolioPage = () => {
                  커뮤니티, 건의사항, 모임, 공공데이터 안심지도를 통한 정보 습득 및 공유
                </p>
                <div className="flex flex-wrap gap-2 mb-6">
-                 {['Spring(STS3)', 'Oracle', 'JavaScript'].map(t => (
+                 {['Spring(STS3)', 'Servlet', 'JSP'].map(t => (
                    <span key={t} className="bg-[#1e293b] text-[#f8fafc] px-2 py-1 text-xs font-bold brutal-border">{t}</span>
                  ))}
-                 <span className="bg-[#f8fafc] text-[#1e293b] px-2 py-1 text-xs font-bold brutal-border">+5</span>
+                 <span className="bg-[#f8fafc] text-[#1e293b] px-2 py-1 text-xs font-bold brutal-border">+7</span>
                </div>
                <div className="w-full bg-[#f8fafc] text-[#020617] font-bold py-3 brutal-border flex justify-center items-center gap-2 group-hover:bg-[#38bdf8] group-hover:text-[#020617] transition-colors cursor-pointer mt-auto">
                  VIEW PROJECT <ArrowUpRight size={18} />
