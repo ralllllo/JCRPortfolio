@@ -13,7 +13,7 @@ function App() {
           </Link>
           
           <nav className="hidden md:flex gap-8 font-bold text-[#f8fafc]">
-            <a href="#top" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="hover:bg-[#bef264] hover:text-[#020617] px-2 transition-colors cursor-pointer">ABOUT</a>
+            <a href="#about" className="hover:bg-[#bef264] hover:text-[#020617] px-2 transition-colors">ABOUT</a>
             <a href="#skills" className="hover:bg-[#38bdf8] hover:text-[#020617] px-2 transition-colors">SKILLS</a>
             <a href="#projects" className="hover:bg-[#f472b6] hover:text-[#020617] px-2 transition-colors">PROJECTS</a>
           </nav>

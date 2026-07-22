@@ -2,17 +2,23 @@ import { Lightbulb, Heart, Zap, Award, GraduationCap, Code2, Box, Briefcase, Lap
 
 const ResumeSection = () => {
   return (
-    <section id="resume" className="w-full flex flex-col items-center">
+    <section id="about" className="scroll-mt-28 w-full flex flex-col items-center">
       {/* Title Area */}
-      <div className="text-center mb-12 w-full">
-        <h2 className="text-3xl md:text-5xl font-black mb-4 text-[#f8fafc]">소개</h2>
+      <div className="w-full mb-12">
+        <div className="flex items-center gap-4 mb-4">
+          <h2 className="text-4xl md:text-5xl font-black text-[#f8fafc]">ABOUT</h2>
+          <div className="h-2 flex-1 bg-[#020617]"></div>
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 w-full">
         {/* Left Column : Description & Philosophy */}
         <div className="flex flex-col gap-10">
           <p className="text-slate-300 leading-relaxed text-base md:text-lg">
-            플랫폼을 가리지 않고 사용자가 실제로 쓰는 서비스를 만들어가는 풀스택 개발자입니다. 소상공인을 위한 통합 경량화 ERP 시스템 및 지역 기반 정보 공유 커뮤니티 등 실생활에 밀접하고 기술적 도전이 있는 프로젝트에서 끈기 있게 문제를 해결해왔습니다. 프론트엔드부터 백엔드까지 전체적인 아키텍처를 고민하며, 최적의 사용자 경험과 안정적인 서비스를 제공하기 위해 지속적으로 학습하고 성장하고 있습니다.
+            플랫폼을 가리지 않고 사용자가 실제로 쓰는 서비스를 만들어가는 풀스택 개발자입니다.<br/>
+            전통적 개발 방식, 바이브 코딩 프로젝트 경험이 둘 다 있으며
+             소상공인을 위한 통합 경량화 ERP 시스템 및 지역 기반 정보 공유 커뮤니티 등 실생활에 밀접하고 기술적 도전이 있는 프로젝트에서 끈기 있게 문제를 해결해왔습니다.
+              프론트엔드부터 백엔드까지 전체적인 아키텍처를 고민하며, 최적의 사용자 경험과 안정적인 서비스를 제공하기 위해 지속적으로 학습하고 성장하고 있습니다.
           </p>
 
           <div>

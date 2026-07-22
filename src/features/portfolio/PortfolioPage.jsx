@@ -78,7 +78,7 @@ const PortfolioPage = () => {
       <ResumeSection />
       
       {/* Skills Section */}
-      <section id="skills" className="w-full">
+      <section id="skills" className="scroll-mt-28 w-full">
          <div className="flex items-center gap-4 mb-12">
            <h2 className="text-4xl md:text-5xl font-black uppercase text-[#f8fafc]">Skills</h2>
            <div className="h-2 flex-1 bg-[#020617]"></div>
@@ -124,7 +124,7 @@ const PortfolioPage = () => {
       </section>
       
       {/* Projects Section */}
-      <section id="projects" className="w-full">
+      <section id="projects" className="scroll-mt-28 w-full">
          <div className="flex items-center gap-4 mb-12">
            <h2 className="text-4xl md:text-5xl font-black uppercase text-[#f8fafc]">Projects</h2>
            <div className="h-2 flex-1 bg-[#020617]"></div>
