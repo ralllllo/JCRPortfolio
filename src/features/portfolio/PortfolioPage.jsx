@@ -2,6 +2,7 @@ import { ArrowUpRight, Code, Terminal, Layers } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ecommerceImg from '../../assets/soso.png';
 import apiServiceImg from '../../assets/local_zip.png';
+import ResumeSection from './components/ResumeSection';
 
 const PortfolioPage = () => {
   return (
@@ -72,6 +73,9 @@ const PortfolioPage = () => {
           </div>
         </div>
       </section>
+      
+      {/* Resume/Introduction Section */}
+      <ResumeSection />
       
       {/* Skills Section */}
       <section id="skills" className="w-full">
