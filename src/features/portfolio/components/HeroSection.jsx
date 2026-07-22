@@ -2,17 +2,19 @@ import { Code, ArrowUpRight } from 'lucide-react';
 
 const HeroSection = () => {
   return (
-    <section className="flex flex-col md:flex-row items-center gap-12 pt-10">
+    <section className="flex flex-col md:flex-row items-start gap-12 pt-10">
       <div className="flex-1 space-y-8 text-center md:text-left">
         <div className="inline-block bg-[#38bdf8] text-[#020617] font-mono font-bold px-4 py-2 brutal-border brutal-shadow-sm -rotate-2">
           FullStack DEVELOPER
         </div>
-        <h1 className="text-5xl sm:text-6xl md:text-8xl font-black uppercase leading-none tracking-tight text-[#f8fafc]">
-          안녕하세요 <br/>정채림 <br/> 입니다.
-        </h1>
         <p className="text-xl font-medium max-w-lg mx-auto md:mx-0 text-slate-300">
           신입 풀스택 개발자 정채림입니다. 
         </p>
+        <img 
+          src="/profile.jpg" 
+          alt="정채림 프로필" 
+          className="w-full max-w-lg h-auto object-cover brutal-border brutal-shadow mx-auto md:mx-0"
+        />
         <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center md:justify-start">
            <button 
              onClick={() => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })}
@@ -30,7 +32,7 @@ const HeroSection = () => {
       </div>
       
       <div className="w-full md:w-1/2 flex justify-center pb-10 md:pb-0">
-        <div className="relative w-full max-w-lg bg-[#1e293b] p-8 sm:p-10 brutal-border brutal-shadow font-mono text-base sm:text-lg mt-4 md:mt-0">
+        <div className="relative w-full max-w-lg bg-[#1e293b] p-8 sm:p-10 brutal-border brutal-shadow font-mono text-base sm:text-lg mt-4 md:mt-[132px]">
           {/* Top Bar */}
           <div className="flex justify-between items-center mb-8">
             <div className="flex gap-2.5">
