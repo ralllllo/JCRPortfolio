@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="min-h-screen flex flex-col font-sans">
       {/* Neo-Brutalist Header */}
-      <header className="sticky top-0 z-50 bg-[#1e293b] brutal-border border-l-0 border-r-0 border-t-0">
+      <header className="sticky top-0 z-50 w-full bg-[#1e293b] brutal-border border-l-0 border-r-0 border-t-0">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-2xl font-black tracking-tighter flex items-center gap-2 hover:opacity-80 transition-opacity cursor-pointer">
             <div className="bg-[#f8fafc] text-[#020617] px-3 py-1 -rotate-3 brutal-border brutal-shadow-sm">JCR</div>

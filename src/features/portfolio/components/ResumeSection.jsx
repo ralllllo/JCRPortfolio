@@ -30,7 +30,7 @@ const ResumeSection = () => {
                   <Lightbulb className="text-[#38bdf8]" size={20} />
                   <h4 className="font-bold text-[#f8fafc]">문제 해결</h4>
                 </div>
-                <p className="text-sm text-slate-400">복잡한 문제를 단순하고 우아한 솔루션으로 풀어냅니다.</p>
+                <p className="text-sm text-slate-400">복잡한 문제를 확실하게 풀어냅니다.</p>
               </div>
 
               <div className="bg-[#1e293b] p-5 brutal-border brutal-shadow-sm hover:translate-y-[-2px] transition-transform">
