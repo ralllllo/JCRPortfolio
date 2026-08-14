@@ -48,14 +48,14 @@ const SoSoProjectPage = () => {
                 <Calendar size={16} className="text-[#38bdf8]" /> Period: 2026.05 - 2026.06
               </div>
               <div className="bg-[#334155] text-[#f8fafc] brutal-border px-4 py-2 flex items-center gap-2 text-sm">
-                <User size={16} className="text-[#facc15]" /> Role: Git hub, Infra 담당자
+                <User size={16} className="text-[#facc15]" /> Role: Full-Stack 개발 및 Infra 구축
               </div>
             </div>
             
             <div className="bg-[#334155] brutal-border brutal-shadow p-6 md:p-10 mt-8 text-base md:text-lg">
               <p className="font-bold leading-relaxed text-[#f8fafc]">
                 소상공인들이 상품의 입출고, 발주, 거래처, 결제 및 지출 내역을 하나의 서비스에서 간편하게 통합 관리할 수 있도록 설계된 풀스택 이커머스 ERP 솔루션입니다. 챗봇 기능을 통해 매장 운영 데이터를 확인할 수 있습니다.
-                (바이브 코딩)
+                
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@ const SoSoProjectPage = () => {
                 <h3 className="text-2xl font-black text-[#f8fafc]">Backend</h3>
               </div>
               <div className="flex flex-wrap gap-3">
-                {['Spring Boot', 'Java', 'Mybatis', 'MySQL' ,'Servlet', 'JSP'].map(t => (
+                {['Spring Boot', 'Java', 'Mybatis', 'MySQL'].map(t => (
                   <span key={t} className="bg-[#f8fafc] text-[#020617] brutal-border px-3 py-1 font-bold text-sm">{t}</span>
                 ))}
               </div>
@@ -185,6 +185,15 @@ const SoSoProjectPage = () => {
                   <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-300 font-medium">
                     <li>GitHub Flow 브랜치 전략 수립</li>
                     <li>팀원 간 Merge Conflict 해결 및 PR 리뷰 주도로 3인 프로젝트 리딩</li>
+                  </ul>
+                )
+              },
+              {
+                icon: '🤖',
+                title: 'AI 코딩 에이전트 활용(Vibe Coding)',
+                desc: (
+                  <ul className="list-disc pl-5 mt-2 space-y-1 text-sm text-slate-300 font-medium">
+                    <li>AI 도구를 적극 활용하여 프론트엔드/백엔드 통합 개발 생산성 향상 및 신규 기술(챗봇 등) 도입</li>
                   </ul>
                 )
               }

@@ -48,14 +48,14 @@ const LocalZipPage = () => {
                 <Calendar size={16} className="text-[#38bdf8]" /> Period: 2026.03 - 2026.04
               </div>
               <div className="bg-[#334155] text-[#f8fafc] brutal-border px-4 py-2 flex items-center gap-2 text-sm">
-                <User size={16} className="text-[#facc15]" /> Role: DB, Infra 담당자
+                <User size={16} className="text-[#facc15]" /> Role: Full-Stack 개발 및 DB/Infra 구축
               </div>
             </div>
             
             <div className="bg-[#334155] brutal-border brutal-shadow p-6 md:p-10 mt-8 text-base md:text-lg">
               <p className="font-bold leading-relaxed text-[#f8fafc]">
                 커뮤니티, 건의사항, 모임, 공공데이터 안심지도를 통한 본인이 살고있는 동네의 정보 습득 및 공유를 할 수 있습니다.<br/>
-                (전통적 개발 방식)
+                
               </p>
             </div>
           </div>
@@ -83,7 +83,7 @@ const LocalZipPage = () => {
                 <h3 className="text-2xl font-black text-[#f8fafc]">Backend</h3>
               </div>
               <div className="flex flex-wrap gap-3">
-                {['Spring Boot(STS3)', 'Java', 'Oracle' ].map(t => (
+                {['Spring Boot(STS3)', 'Java', 'Oracle', 'Servlet', 'JSP' ].map(t => (
                   <span key={t} className="bg-[#f8fafc] text-[#020617] brutal-border px-3 py-1 font-bold text-sm">{t}</span>
                 ))}
               </div>
@@ -160,6 +160,15 @@ const LocalZipPage = () => {
                 desc: (
                   <p className="text-sm text-slate-300 font-medium">
                     클라우드 환경(AWS EC2)을 활용한 안정적인 서버 배포 환경 구축 및 Oracle DB의 체계적인 테이블 설계와 쿼리 성능 최적화 도모
+                  </p>
+                )
+              },
+              {
+                icon: '🏛️',
+                title: '전통적 MVC 아키텍처 기반 딥다이브',
+                desc: (
+                  <p className="text-sm text-slate-300 font-medium">
+                    Spring, Servlet, JSP를 활용한 Server-Side Rendering(SSR) 방식의 정통 웹 애플리케이션 구현
                   </p>
                 )
               }
