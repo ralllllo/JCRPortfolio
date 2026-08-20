@@ -64,7 +64,7 @@ const ResumeSection = () => {
         {/* Right Column : Journey (Timeline) */}
         <div>
           <h3 className="text-2xl font-bold mb-8 text-[#f8fafc]">여정</h3>
-          <div className="flex flex-col gap-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-600 before:to-transparent">
+          <div className="flex flex-col gap-8 relative">
             
             {/* Timeline Item 1 */}
             <div className="relative flex items-start gap-6">
