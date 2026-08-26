@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy, Wrench } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -180,6 +180,45 @@ const LocalZipPage = () => {
                 <div className="flex-1">
                   <h3 className="text-xl font-black text-[#f8fafc] mb-1 leading-tight">{achieve.title}</h3>
                   {achieve.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Troubleshooting */}
+        <section className="mb-16">
+          <div className="inline-flex bg-[#f8fafc] text-[#020617] font-black px-4 py-2 brutal-border brutal-shadow-sm mb-6 items-center gap-2">
+            <Wrench size={20} /> <span>TROUBLESHOOTING</span>
+          </div>
+          <div className="flex flex-col gap-6">
+            {[
+              {
+                issue: '이슈 타이틀 1',
+                problem: '문제 상황에 대한 설명이 들어갈 자리입니다.',
+                solution: '해결 방법에 대한 설명이 들어갈 자리입니다.'
+              },
+              {
+                issue: '이슈 타이틀 2',
+                problem: '문제 상황에 대한 설명이 들어갈 자리입니다.',
+                solution: '해결 방법에 대한 설명이 들어갈 자리입니다.'
+              }
+            ].map((ts, i) => (
+              <div key={i} className="bg-[#334155] p-6 md:p-8 brutal-border brutal-shadow transition-all">
+                <h3 className="text-xl font-black text-[#facc15] mb-4">💡 {ts.issue}</h3>
+                <div className="space-y-4">
+                  <div className="bg-[#1e293b] p-4 brutal-border">
+                    <h4 className="text-[#f8fafc] font-black mb-2 flex items-center gap-2">
+                      <span className="text-[#f472b6]">Q.</span> Problem
+                    </h4>
+                    <p className="text-sm text-slate-300 font-medium leading-relaxed">{ts.problem}</p>
+                  </div>
+                  <div className="bg-[#1e293b] p-4 brutal-border">
+                    <h4 className="text-[#f8fafc] font-black mb-2 flex items-center gap-2">
+                      <span className="text-[#38bdf8]">A.</span> Solution
+                    </h4>
+                    <p className="text-sm text-slate-300 font-medium leading-relaxed">{ts.solution}</p>
+                  </div>
                 </div>
               </div>
             ))}

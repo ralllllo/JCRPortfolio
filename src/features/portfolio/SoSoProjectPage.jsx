@@ -1,4 +1,4 @@
-import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy, Wrench } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -205,6 +205,90 @@ const SoSoProjectPage = () => {
                 <div className="flex-1">
                   <h3 className="text-xl font-black text-[#f8fafc] mb-1 leading-tight">{achieve.title}</h3>
                   {achieve.desc}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        {/* Troubleshooting */}
+        <section className="mb-16">
+          <div className="inline-flex bg-[#f8fafc] text-[#020617] font-black px-4 py-2 brutal-border brutal-shadow-sm mb-6 items-center gap-2">
+            <Wrench size={20} /> <span>TROUBLESHOOTING</span>
+          </div>
+          <div className="flex flex-col gap-6">
+            {[
+              {
+                issue: '다중 매장 등록 환경에서의 GCS 이미지 매핑 및 데이터 정합성 이슈',
+                problem: '초기 설계 시 파일 저장 기준이 사용자 번호로만 묶여 있어, 다점포 등록 시 서로 다른 매장의 사진이 덮어씌워지거나 1·2호점 이미지가 혼선되는 데이터 꼬임 현상 발생',
+                solution: (
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">식별자 확장:</strong> 공통 파일 저장 DTO 및 로직에 대상 객체의 고유 번호를 담을 수 있는 필드 도입</li>
+                    <li><strong className="text-[#f8fafc]">서비스 계층 분리:</strong> GCS 업로드 및 DB 기록 시 매장 식별자를 함께 처리하는 전용 메서드를 신설하여 매장별 데이터 격리 구조 구축</li>
+                    <li><strong className="text-[#f8fafc]">조회 로직 최적화:</strong> 매장 수정 및 조회 시 매핑된 사진만 정확히 타겟팅하여 조회 및 교체하도록 개선</li>
+                  </ul>
+                )
+              },
+              {
+                issue: 'GCE 인스턴스 스펙 변경 과정에서의 재부팅 이후 DB 커넥션 및 데이터 정합성 이슈',
+                problem: '재부팅 이후 챗봇 기능 테스트 중, 시스템이 실시간 최신 DB 데이터를 반영하지 못하고 구버전 데이터를 기반으로 응답하여 데이터 연결이 비정상적으로 꼬이는 현상 발생',
+                solution: (<ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">인프라 세션 및 커넥션 풀 분석:</strong> 인스턴스 재부팅 시점에 기존 애플리케이션 프로세스가 비정상적으로 종료되면서, 커넥션 풀이 기존 연결을 깔끔하게 해제하지 못하고 락이 걸리거나 구버전 컨테이너 세션이 일부 잔류하여 데이터 싱크가 어긋났음을 확인함.</li>
+                    <li><strong className="text-[#f8fafc]">리소스 초기화 및 연결 재검증:</strong> 배포 및 재시작 파이프라인에서 커넥션 맺고 끊는 생명주기 설정을 재검증하여, 재부팅 이후에도 새로운 DB 인스턴스와 완벽하게 동기화된 커넥션을 맺도록 로직을 안정화함.</li>
+                    
+                  </ul>)
+              },
+              {
+                issue: ' 마감 직전, 공동발주 상품에 다수의 사업자가 동시에 참여하기를 요청하는 상황 발생',
+                problem: '자바 단에서만 현재 인원 < 목표 인원 여부를 확인한 뒤 DB를 업데이트하면, 동시 접속 시점에 여러 요청이 동시에 검사 로직을 통과해버림으로 인해 설정된 목표 인원을 초과하여 모집되는 데이터 정합성 문제가 발생',
+                solution: (<ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">DB 쿼리 레벨의 조건부 원자적 업데이트 적용:</strong> DB의 로우 락을 활용하여 한 번에 하나의 요청만 인원을 검사하고 1씩 증가시키게 하였음.  </li>
+                    <li><strong className="text-[#f8fafc]">단일 쿼리 상태 변경:</strong>쿼리 내부에서 CASE WHEN 절을 사용해 업데이트 직후 인원이 꽉 차면 공구 상태를 자동으로 모집 완료로 변경하도록 최적화</li>
+                    <li><strong className="text-[#f8fafc]">예외 처리:</strong>서비스 로직에서는 해당 쿼리의 반영 결과가 0으로 반환되면, 이미 마감된 것으로 간주하여 모집 인원이 마감이라는 예외를 즉시 던지도록 처리 </li>
+
+                  </ul>)
+              },
+              {
+                issue: '재고 출고 시 선입선출 로직 구현 및 동시성 방지',
+                problem: (
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">선입선출 로직의 복잡성:</strong> 유통기한이 임박한 재고부터 빼야 하는데, 한 번의 출고 요청 수량이 유통기한이 가장 짧은 첫 배치의 잔여 수량보다 클 경우, 부족분만큼 그 다음 배치를 찾아 이어서 빼야 하는 까다로운 차감 로직이 필요</li>
+                    <li><strong className="text-[#f8fafc]">마스터 재고 유실:</strong> 동시 출고 상황에서 서비스 단에서 불러온 전체 재고 값에 출고량을 뺀 값을 DB에 그대로 덮어씌울 경우, 찰나의 순간 다른 사람의 출고 내역이 무시되고 덮어씌워져 실제 재고와 DB 수량이 불일치하는 현상이 발생</li>
+                  </ul>
+                ),
+                solution: (
+                  <ul className="list-disc pl-5 space-y-3">
+                    <li><strong className="text-[#f8fafc]">다중 배치 순차 차감 루프:</strong>
+                      <ul className="list-disc pl-5 mt-1 space-y-1 text-slate-300 text-sm">
+                        <li>출고 가능한 배치들을 쿼리에서 유통기한 오름차순으로 먼저 정렬</li>
+                        <li>자바 로직에서 for 루프와 현재 배치 잔량, 남은 출고 필요량 메서드를 결합해, 첫 배치에서 뺄 수 있는 만큼만 빼고 남은 수량은 다음 배치로 이월하여 순차적으로 차감하도록 구현해 선입선출을 완벽하게 해결</li>
+                      </ul>
+                    </li>
+                    <li><strong className="text-[#f8fafc]">상대적 증감 쿼리로 덮어쓰기 방지:</strong>
+                      <ul className="list-disc pl-5 mt-1 space-y-1 text-slate-300 text-sm">
+                        <li>마스터 재고를 차감할 때 자바에서 계산한 고정값으로 DB를 업데이트하지 않고, 쿼리 자체에 형태의 상대적 증감 수식을 적용</li>
+                        <li>DB 엔진이 연산을 직접 처리하게 하여, 동시에 여러 트랜잭션이 들어와도 뺄셈 누락 없이 정확한 마스터 재고를 유지하도록 정합성을 보장</li>
+                      </ul>
+                    </li>
+                  </ul>
+                )
+              }
+            ].map((ts, i) => (
+              <div key={i} className="bg-[#334155] p-6 md:p-8 brutal-border brutal-shadow transition-all">
+                <h3 className="text-xl font-black text-[#facc15] mb-4">💡 {ts.issue}</h3>
+                <div className="space-y-4">
+                  <div className="bg-[#1e293b] p-4 brutal-border">
+                    <h4 className="text-[#f8fafc] font-black mb-2 flex items-center gap-2">
+                      <span className="text-[#f472b6]">Q.</span> Problem
+                    </h4>
+                    <div className="text-sm text-slate-300 font-medium leading-relaxed">{ts.problem}</div>
+                  </div>
+                  <div className="bg-[#1e293b] p-4 brutal-border">
+                    <h4 className="text-[#f8fafc] font-black mb-2 flex items-center gap-2">
+                      <span className="text-[#38bdf8]">A.</span> Solution
+                    </h4>
+                    <div className="text-sm text-slate-300 font-medium leading-relaxed">{ts.solution}</div>
+                  </div>
                 </div>
               </div>
             ))}
