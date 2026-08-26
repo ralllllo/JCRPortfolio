@@ -32,7 +32,7 @@ const LocalZipPage = () => {
           <div className="flex flex-col gap-6 pt-6">
             <div className="flex flex-col items-start gap-4 w-fit">
               <h1 className="text-5xl md:text-7xl font-black tracking-tight relative z-10 text-[#f8fafc]">
-                SoSo
+                LocalZip
                 <div className="absolute -bottom-2 left-0 h-4 md:h-6 bg-[#38bdf8] w-full -z-10 translate-y-1 brutal-border"></div>
               </h1>
             </div>
@@ -194,14 +194,45 @@ const LocalZipPage = () => {
           <div className="flex flex-col gap-6">
             {[
               {
-                issue: '이슈 타이틀 1',
-                problem: '문제 상황에 대한 설명이 들어갈 자리입니다.',
-                solution: '해결 방법에 대한 설명이 들어갈 자리입니다.'
+                issue: '이중 라우터 환경에서의 로컬 DB 외부 접속 및 포트포워딩 이슈',
+                problem: '팀 프로젝트 중 원격 팀원들이 공용으로 접근할 수 있는 DB 환경이 필요해 로컬 PC에 DB를 구축하고 포트포워딩 설정을 시도했지만 설정 후 외부(팀원들)에서 접속이 안 되는 현상이 발생했고, 네트워크 구조를 진단해 보니 공유기 2개가 직렬로 물리면서 이중 라우터 구조로 라우팅 경로가 꼬여있음을 확인',
+                solution: (
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">라우팅 경로 추적:</strong> 각 공유기의 WAN IP와 LAN 대역을 분석하여 패킷이 라우팅되는 경로를 추적</li>
+                    <li><strong className="text-[#f8fafc]">경로 단순화 및 체인 설정:</strong> 상위 공유기와 하위 공유기 각각에서 포트포워딩 체인 설정 오류를 수정</li>
+                    <li><strong className="text-[#f8fafc]">방화벽 점검:</strong> 방화벽 및 인바운드 규칙 점검을 통한 외부 접근 허용 테스트를 성공</li>
+                  </ul>
+                )
               },
               {
-                issue: '이슈 타이틀 2',
-                problem: '문제 상황에 대한 설명이 들어갈 자리입니다.',
-                solution: '해결 방법에 대한 설명이 들어갈 자리입니다.'
+                issue: '동일한 서버 내에 구축된 Tomcat과 Oracle Database 간의 연동이 실패하며 애플리케이션이 정상적으로 구동되지 않는 현상 발생',
+                problem: (
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">접속 경로 및 설정 불일치:</strong> 로컬 개발 환경 기준(localhost)으로 작성되었던 DB 접속 정보와 리스너 설정이 배포 서버 환경의 네트워크 및 프로세스 통신 규격과 정확히 맞물리지 않음</li>
+                    <li><strong className="text-[#f8fafc]">부팅 프로세스 및 자원 한계:</strong> 프리티어 EC2 환경에서 무거운 Oracle DB가 완전히 기동되기 전에 Tomcat이 먼저 실행되면서, 커넥션 풀 초기화 단계에서 연결 타임아웃 또는 거부 에러 발생</li>
+                  </ul>
+                ),
+                solution: (
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">접속 경로 재정비:</strong> 스프링 DB 설정 파일의 접속 주소를 EC2 내부 IP 기준으로 수정하고, Oracle 리스너 설정을 점검하여 내부 프로세스 간 통신 경로 확보</li>
+                    <li><strong className="text-[#f8fafc]">설정 분리 및 기동 순서 최적화:</strong> 로컬 테스트용 설정과 배포용 설정 파일을 명확히 분리하여 빌드 오류 방지. 아울러 DB 서비스가 완전히 활성화된 것을 확인한 후 Tomcat을 기동하도록 배포 프로세스를 정돈하고 커넥션 설정 보완</li>
+                  </ul>
+                )
+              },
+              {
+                issue: '게시글 작성/수정 폼에서 파일 첨부 시 기존 UI 버튼의 이벤트가 동작하지 않는 현상 발생',
+                problem: (
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">동적 DOM 변경과 핸들러 연결 끊김:</strong> 파일 첨부 컴포넌트가 렌더링되면서 DOM 구조가 동적으로 변경되었으나, 기존 이벤트 핸들러가 고정된 DOM 경로를 참조하고 있어 요소를 타겟팅하지 못함</li>
+                    <li><strong className="text-[#f8fafc]">고유 식별자 추출 실패:</strong> 특히 복잡한 계층 구조 속에서 해당 게시글의 고유 번호를 정확히 특정하지 못해 요청이 누락되거나 에러가 발생</li>
+                  </ul>
+                ),
+                solution: (
+                  <ul className="list-disc pl-5 space-y-2">
+                    <li><strong className="text-[#f8fafc]">동적 DOM 계층 재탐색 로직 구현:</strong> 고정된 셀렉터 방식 대신, 이벤트가 발생한 시점의 타겟을 기준으로 DOM 트리를 상향/하향 탐색하여 안정적으로 게시글 고유 번호를 추출할 수 있도록 로직을 개선</li>
+                    <li><strong className="text-[#f8fafc]">이벤트 위임 적용 검토:</strong> 동적으로 생성되는 요소에도 이벤트가 안정적으로 바인딩될 수 있도록 구조를 보완</li>
+                  </ul>
+                )
               }
             ].map((ts, i) => (
               <div key={i} className="bg-[#334155] p-6 md:p-8 brutal-border brutal-shadow transition-all">
@@ -211,13 +242,13 @@ const LocalZipPage = () => {
                     <h4 className="text-[#f8fafc] font-black mb-2 flex items-center gap-2">
                       <span className="text-[#f472b6]">Q.</span> Problem
                     </h4>
-                    <p className="text-sm text-slate-300 font-medium leading-relaxed">{ts.problem}</p>
+                    <div className="text-sm text-slate-300 font-medium leading-relaxed">{ts.problem}</div>
                   </div>
                   <div className="bg-[#1e293b] p-4 brutal-border">
                     <h4 className="text-[#f8fafc] font-black mb-2 flex items-center gap-2">
                       <span className="text-[#38bdf8]">A.</span> Solution
                     </h4>
-                    <p className="text-sm text-slate-300 font-medium leading-relaxed">{ts.solution}</p>
+                    <div className="text-sm text-slate-300 font-medium leading-relaxed">{ts.solution}</div>
                   </div>
                 </div>
               </div>
