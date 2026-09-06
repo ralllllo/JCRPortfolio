@@ -105,6 +105,66 @@ const SoSoProjectPage = () => {
           </div>
         </section>
 
+        {/* Architecture & ERD */}
+        <section>
+          <SectionLabel>ARCHITECTURE & ERD</SectionLabel>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <Box>
+              <h3 className="text-2xl font-black mb-6 text-[#facc15] flex items-center gap-2">
+                <Layers size={24} /> Architecture
+              </h3>
+              <button 
+                onClick={() => setSelectedGif('/images/soso_architecture.png')}
+                className="w-full aspect-video bg-[#1e293b] brutal-border flex flex-col items-center justify-center relative hover:bg-[#334155] transition-colors group p-2 overflow-hidden"
+              >
+                <img 
+                  src="/images/soso_architecture.png" 
+                  alt="시스템 아키텍처" 
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="absolute inset-0 hidden flex-col items-center justify-center text-gray-500 font-bold text-center p-4">
+                  <span className="text-xl mb-2">아키텍처 이미지 영역</span>
+                  <span className="text-sm break-all">src: /images/soso_architecture.png</span>
+                </div>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                  <span className="bg-[#facc15] text-[#020617] px-4 py-2 font-black brutal-border">크게 보기</span>
+                </div>
+              </button>
+            </Box>
+
+            <Box>
+              <h3 className="text-2xl font-black mb-6 text-[#38bdf8] flex items-center gap-2">
+                <Server size={24} /> ERD
+              </h3>
+              <button 
+                onClick={() => setSelectedGif('/images/soso_erd.png')}
+                className="w-full aspect-video bg-[#1e293b] brutal-border flex flex-col items-center justify-center relative hover:bg-[#334155] transition-colors group p-2 overflow-hidden"
+              >
+                <img 
+                  src="/images/soso_erd.png" 
+                  alt="ERD 다이어그램" 
+                  className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextSibling.style.display = 'flex';
+                  }}
+                />
+                <div className="absolute inset-0 hidden flex-col items-center justify-center text-gray-500 font-bold text-center p-4">
+                  <span className="text-xl mb-2">ERD 이미지 영역</span>
+                  <span className="text-sm break-all">src: /images/soso_erd.png</span>
+                </div>
+                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+                  <span className="bg-[#38bdf8] text-[#020617] px-4 py-2 font-black brutal-border">크게 보기</span>
+                </div>
+              </button>
+            </Box>
+          </div>
+        </section>
+
         {/* Key Features */}
         <section>
           <SectionLabel>KEY FEATURES</SectionLabel>
@@ -131,7 +191,7 @@ const SoSoProjectPage = () => {
               <thead>
                 <tr className="bg-[#1e293b]">
                   <th className="p-4 border-b-4 border-r-4 border-[#020617] text-[#facc15] font-black text-xl w-2/3">설명</th>
-                  <th className="p-4 border-b-4 border-[#020617] text-[#facc15] font-black text-xl w-1/3 text-center">시연 영상</th>
+                  <th className="p-4 border-b-4 border-[#020617] text-[#facc15] font-black text-xl w-1/3 text-center">짧은 시연 영상</th>
                 </tr>
               </thead>
               <tbody className="text-[#f8fafc]">
