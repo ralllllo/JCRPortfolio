@@ -1,6 +1,6 @@
-import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy, Wrench } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy, Wrench, Play, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Box = ({ children, className = '' }) => (
   <div className={`bg-[#334155] p-8 brutal-border brutal-shadow hover-brutal transition-all ${className}`}>
@@ -15,6 +15,8 @@ const SectionLabel = ({ children }) => (
 );
 
 const SoSoProjectPage = () => {
+  const [selectedGif, setSelectedGif] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -118,6 +120,71 @@ const SoSoProjectPage = () => {
                 <p className="font-bold text-base text-gray-300">{f.desc}</p>
               </Box>
             ))}
+          </div>
+        </section>
+
+        {/* Service Demonstration */}
+        <section className="mt-16 mb-16">
+          <SectionLabel>SERVICE DEMONSTRATION</SectionLabel>
+          <div className="w-full bg-[#334155] brutal-border brutal-shadow overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr className="bg-[#1e293b]">
+                  <th className="p-4 border-b-4 border-r-4 border-[#020617] text-[#facc15] font-black text-xl w-2/3">설명</th>
+                  <th className="p-4 border-b-4 border-[#020617] text-[#facc15] font-black text-xl w-1/3 text-center">시연 영상</th>
+                </tr>
+              </thead>
+              <tbody className="text-[#f8fafc]">
+                {[
+                  {
+                    title: '새 품목 등록',
+                    desc: '새로운 상품을 시스템에 등록하고 초기 재고를 설정합니다.',
+                    gif: '/gifs/soso_new_item.gif'
+                  },
+                  {
+                    title: '출고',
+                    desc: '등록된 상품을 출고 처리하고 재고를 차감합니다.',
+                    gif: '/gifs/soso_release.gif'
+                  },
+                  {
+                    title: '재고 조정',
+                    desc: '실사 재고와 시스템 재고의 오차를 조정하여 정합성을 맞춥니다.',
+                    gif: '/gifs/soso_adjustment.gif'
+                  },
+                  {
+                    title: '자동 재고 제어 관리',
+                    desc: '안전 재고 이하로 떨어질 경우 알림을 주고 자동으로 발주를 유도합니다.',
+                    gif: '/gifs/soso_auto_control.gif'
+                  },
+                  {
+                    title: '공동 그룹 생성',
+                    desc: '다른 사업자와 함께 발주할 수 있는 공동 발주 그룹을 생성합니다.',
+                    gif: '/gifs/soso_group_create.gif'
+                  },
+                  {
+                    title: '공동 발주 그룹 관리',
+                    desc: '생성된 공동 발주 그룹의 진행 상태를 관리하고 참여자를 확인합니다.',
+                    gif: '/gifs/soso_group_manage.gif'
+                  }
+                ].map((demo, i) => (
+                  <tr key={i} className="border-b-4 border-[#020617] last:border-b-0 hover:bg-[#1e293b] transition-colors">
+                    <td className="p-4 align-middle border-r-4 border-[#020617]">
+                      <h4 className="text-xl font-black mb-2 text-[#38bdf8]">{demo.title}</h4>
+                      <p className="font-bold text-gray-300 leading-relaxed text-base">{demo.desc}</p>
+                    </td>
+                    <td className="p-3 bg-[#0f172a] align-middle">
+                      <button 
+                        onClick={() => setSelectedGif(demo.gif)}
+                        className="w-full py-2 bg-[#1e293b] brutal-border flex flex-col items-center justify-center hover:bg-[#334155] transition-colors group"
+                      >
+                        <Play size={28} className="text-[#38bdf8] mb-1 group-hover:scale-110 transition-transform" />
+                        <span className="text-[#f8fafc] font-black text-sm">영상 보기</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -305,9 +372,6 @@ const SoSoProjectPage = () => {
                 <path d="M9 18c-4.51 2-5-2-7-2"/>
               </svg> Github
             </a>
-            <a href="https://emsemsdl.shop/" target="_blank" rel="noopener noreferrer" className="bg-[#38bdf8] text-[#020617] font-black px-8 py-4 brutal-border brutal-shadow hover-brutal transition-all flex items-center gap-3 text-lg cursor-pointer">
-              <Globe size={24} /> Live Site
-            </a>
           </div>
           
           <div className="bg-[#334155] p-12 brutal-border brutal-shadow text-center flex flex-col items-center justify-center">
@@ -319,6 +383,21 @@ const SoSoProjectPage = () => {
         </section>
 
       </div>
+
+      {/* Modal */}
+      {selectedGif && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#020617]/80 backdrop-blur-sm" onClick={() => setSelectedGif(null)}>
+          <div className="relative w-full max-w-4xl bg-[#1e293b] brutal-border brutal-shadow p-2 md:p-4" onClick={e => e.stopPropagation()}>
+            <button 
+              onClick={() => setSelectedGif(null)}
+              className="absolute -top-12 right-0 text-[#f8fafc] hover:text-[#f472b6] transition-colors"
+            >
+              <X size={36} />
+            </button>
+            <img src={selectedGif} alt="시연 영상" className="w-full h-auto max-h-[70vh] object-contain brutal-border" />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
