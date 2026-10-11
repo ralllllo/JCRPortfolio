@@ -1,6 +1,6 @@
-import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy, Wrench } from 'lucide-react';
+import { ArrowLeft, Calendar, User, Code2, Server, Globe, Layers, Trophy, Wrench, Play, X } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const Box = ({ children, className = '' }) => (
   <div className={`bg-[#334155] p-8 brutal-border brutal-shadow hover-brutal transition-all ${className}`}>
@@ -15,6 +15,8 @@ const SectionLabel = ({ children }) => (
 );
 
 const LocalZipPage = () => {
+  const [selectedVideo, setSelectedVideo] = useState(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -118,6 +120,56 @@ const LocalZipPage = () => {
                 <p className="font-bold text-base text-gray-300">{f.desc}</p>
               </Box>
             ))}
+          </div>
+        </section>
+
+        {/* Service Demonstration */}
+        <section className="mt-16 mb-16">
+          <SectionLabel>SERVICE DEMONSTRATION</SectionLabel>
+          <div className="w-full bg-[#334155] brutal-border brutal-shadow overflow-x-auto">
+            <table className="w-full text-left border-collapse min-w-[600px]">
+              <thead>
+                <tr className="bg-[#1e293b]">
+                  <th className="p-4 border-b-4 border-r-4 border-[#020617] text-[#facc15] font-black text-xl w-2/3">설명</th>
+                  <th className="p-4 border-b-4 border-[#020617] text-[#facc15] font-black text-xl w-1/3 text-center">짧은 시연 영상</th>
+                </tr>
+              </thead>
+              <tbody className="text-[#f8fafc]">
+                {[
+                  {
+                    title: '파일 업로드',
+                    desc: '게시글 작성 시 MultipartResolver를 활용하여 첨부파일을 서버에 업로드하고 고유 파일명으로 안전하게 저장합니다.',
+                    video: '/videos/FileUpload.mp4'
+                  },
+                  {
+                    title: '이메일 인증',
+                    desc: '회원가입 및 비밀번호 찾기 시 SMTP 메일 서버 연동을 통해 인증 번호를 발송하고 유효성을 검증합니다.',
+                    video: '/videos/Email.mp4'
+                  },
+                  {
+                    title: '파일 다운로드',
+                    desc: '게시글에 등록된 첨부파일을 데이터베이스 매핑 정보를 기반으로 브라우저를 통해 안전하게 다운로드합니다.',
+                    video: '/videos/FileDownload.mp4'
+                  }
+                ].map((demo, i) => (
+                  <tr key={i} className="border-b-4 border-[#020617] last:border-b-0 hover:bg-[#1e293b] transition-colors">
+                    <td className="p-4 align-middle border-r-4 border-[#020617]">
+                      <h4 className="text-xl font-black mb-2 text-[#38bdf8]">{demo.title}</h4>
+                      <p className="font-bold text-gray-300 leading-relaxed text-base">{demo.desc}</p>
+                    </td>
+                    <td className="p-3 bg-[#0f172a] align-middle">
+                      <button 
+                        onClick={() => setSelectedVideo(demo.video)}
+                        className="w-full py-2 bg-[#1e293b] brutal-border flex flex-col items-center justify-center hover:bg-[#334155] transition-colors group cursor-pointer"
+                      >
+                        <Play size={28} className="text-[#38bdf8] mb-1 group-hover:scale-110 transition-transform" />
+                        <span className="text-[#f8fafc] font-black text-sm">영상 보기</span>
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -280,6 +332,28 @@ const LocalZipPage = () => {
         </section>
 
       </div>
+
+      {/* Modal */}
+      {selectedVideo && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#020617]/80 backdrop-blur-sm" onClick={() => setSelectedVideo(null)}>
+          <div className="relative w-full max-w-4xl bg-[#1e293b] brutal-border brutal-shadow p-2 md:p-4" onClick={e => e.stopPropagation()}>
+            <button 
+              onClick={() => setSelectedVideo(null)}
+              className="absolute -top-12 right-0 text-[#f8fafc] hover:text-[#f472b6] transition-colors cursor-pointer"
+            >
+              <X size={36} />
+            </button>
+            <video 
+              key={selectedVideo}
+              src={selectedVideo} 
+              controls 
+              autoPlay 
+              playsInline
+              className="w-full h-auto max-h-[70vh] object-contain brutal-border bg-black" 
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
